@@ -5,6 +5,7 @@ const passwordInput = document.querySelector(".input-box input");
 const passIndicator = document.querySelector(".pass-indicator");
 const generateBtn = document.querySelector(".generate-btn");
 
+
 const characters = {
     lowercase: "abcdefghijklmnopqrstuvwxyz",
     uppercase: "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
@@ -12,6 +13,7 @@ const characters = {
     symbols: "!$%&|[](){}:;.,*+-#@<>~"
 }
 
+// 1- Password Generator
 const generatePassword = () => {
     let staticPassword = "",
         randomPassword = "",
@@ -36,10 +38,13 @@ const generatePassword = () => {
     passwordInput.value = randomPassword;
 }
 
+
 const updatePassIndicator = () => {
     passIndicator.id = lengthSlider.value <= 8 ? "weak" : lengthSlider.value <= 16 ? "medium" : "strong"
 }
 
+
+// 2- Update Slider (weak, normal, strong)
 const updateSlider = () => {
     document.querySelector(".pass-length span").innerText = lengthSlider.value
     generatePassword()
@@ -47,6 +52,8 @@ const updateSlider = () => {
 }
 updateSlider()
 
+
+// 3- Copy Password
 const copyPassword = () => {
     navigator.clipboard.writeText(passwordInput.value)
     copyIcon.innerText = "check"
@@ -57,6 +64,7 @@ const copyPassword = () => {
         copyIcon.style.color = "#707070"
     }, 1500)
 }
+
 
 copyIcon.addEventListener("click", copyPassword)
 lengthSlider.addEventListener("input", updateSlider)
